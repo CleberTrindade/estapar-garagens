@@ -9,10 +9,11 @@ namespace Estapar.Garagens.Api.Controllers
     [Route("api/fechamento")]
     public class FechamentoController : ControllerBase
     {
-        private readonly IPassagemService _passagemService;
-        public FechamentoController(IPassagemService passagemService)
+        private readonly IFechamentoService _fechamentoService;
+
+        public FechamentoController(IFechamentoService fechamentoService)
         {
-            _passagemService = passagemService;
+            _fechamentoService = fechamentoService;
         }
 
         [HttpGet("ObterDadosPagamento")]
@@ -28,21 +29,7 @@ namespace Estapar.Garagens.Api.Controllers
             if (dtInicio >= dtFim)
                 return BadRequest("A data de início não deve ser maior ou igual que a data de fim.");
 
-            var retorno = await _passagemService.ObterCarrosPorPeriodo(dtInicio, dtFim);
-
-            var dados = _mapper
-
-            var t = retorno
-            .Where(p => p.DataHoraEntrada >= dtInicio && p.DataHoraSaida <= dtFim)
-            .GroupBy(p => p)
-            .Select(g => new
-            {
-                FormaPagamento = g.Key,
-                Quantidade = g.Count(),
-                ValorTotal = g.Sum(p => p.PrecoTotal)
-            })
-            .ToList();
-
+            var retorno = await _fechamentoService.ObterFechamentoPorPeriodo(dtInicio, dtFim);
 
             return Ok(retorno);
         }
