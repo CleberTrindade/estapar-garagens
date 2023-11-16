@@ -14,11 +14,8 @@ builder.Services.Configure<ExternalServiceConfig>(
 
 builder.Services.AddInfrastructure(builder.Configuration);
 
-//builder.Services.AddScoped<IFormaPagamentoService, FormaPagamentoService>();
-
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

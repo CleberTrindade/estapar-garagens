@@ -8,6 +8,8 @@ namespace Estapar.Garagens.Infrastructure.EntitiesConfiguration
     {
         public void Configure(EntityTypeBuilder<Passagem> builder)
         {
+            builder.HasKey(t => t.Codigo);
+
             builder.Property(p => p.Garagem).HasMaxLength(20).IsRequired();
             builder.Property(p => p.CarroPlaca).HasMaxLength(20).IsRequired();
             builder.Property(p => p.CarroMarca).HasMaxLength(20).IsRequired();

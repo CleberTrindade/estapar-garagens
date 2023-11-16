@@ -2,6 +2,7 @@
 {
     public class Passagem
     {
+        public Guid Codigo { get; set; }
         public string Garagem { get; set; }
         public string CarroPlaca { get; set; }
         public string CarroMarca { get; set; }
