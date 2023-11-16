@@ -10,7 +10,7 @@ using System.Globalization;
 
 namespace Estapar.Garagens.Application.Services
 {
-    public class PassagemService : IPassagemService
+    public class ListagemCarrosService : IListagemCarrosService
     {
 
         private readonly IPassagemRepository _passagemRepository;
@@ -18,7 +18,7 @@ namespace Estapar.Garagens.Application.Services
         private readonly IPassagemExternalService _passagemExternalService;
 
 
-        public PassagemService(IPassagemRepository passagemRepository, IMapper mapper,
+        public ListagemCarrosService(IPassagemRepository passagemRepository, IMapper mapper,
                                IPassagemExternalService passagemExternalService)
         {
             _passagemRepository = passagemRepository;

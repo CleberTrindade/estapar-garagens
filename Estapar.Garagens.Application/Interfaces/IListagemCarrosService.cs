@@ -3,7 +3,7 @@ using Estapar.Garagens.Application.Enums;
 
 namespace Estapar.Garagens.Application.Interfaces
 {
-    public interface IPassagemService
+    public interface IListagemCarrosService
     {
         Task<IEnumerable<CarroGaragemDto>> ObterCarrosPorPeriodo(DateTime periodoInicio, DateTime periodoFinal);
         Task<IEnumerable<CarroGaragemDto>> ObterCarrosEmGaragem();

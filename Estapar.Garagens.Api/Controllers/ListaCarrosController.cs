@@ -9,11 +9,11 @@ namespace Estapar.Garagens.Api.Controllers
     [Route("api/listagem-carros")]
     public class ListaCarrosController : ControllerBase
     {
-        private readonly IPassagemService _passagemService;
+        private readonly IListagemCarrosService _listagemCarrosService;
 
-        public ListaCarrosController(IPassagemService passagemService)
+        public ListaCarrosController(IListagemCarrosService listagemCarrosService)
         {
-            _passagemService = passagemService;
+            _listagemCarrosService = listagemCarrosService;
         }
 
         
@@ -31,7 +31,7 @@ namespace Estapar.Garagens.Api.Controllers
             if (dtInicio >= dtFim)
                 return BadRequest("A data de início não deve ser maior ou igual que a data de fim.");
 
-            var retorno = await _passagemService.ObterCarrosPorPeriodo(dtInicio, dtFim);
+            var retorno = await _listagemCarrosService.ObterCarrosPorPeriodo(dtInicio, dtFim);
 
             return Ok(retorno);
         }
@@ -39,7 +39,7 @@ namespace Estapar.Garagens.Api.Controllers
         [HttpGet("ObterCarrosEmGaragem")]
         public async Task<IActionResult> ObterCarrosEmGaragem()
         {
-            var retorno = await _passagemService.ObterCarrosEmGaragem();
+            var retorno = await _listagemCarrosService.ObterCarrosEmGaragem();
 
             return Ok(retorno);
         }
@@ -47,7 +47,7 @@ namespace Estapar.Garagens.Api.Controllers
         [HttpGet("ObterHistoricoEstadia")]
         public async Task<IActionResult> ObterHistoricoEstadia()
         {
-            var retorno = await _passagemService.ObterHistoricoEstadia();
+            var retorno = await _listagemCarrosService.ObterHistoricoEstadia();
 
             return Ok(retorno);
         }
@@ -55,7 +55,7 @@ namespace Estapar.Garagens.Api.Controllers
         [HttpGet("ObterDadosServicoExterno")]
         public async Task<IActionResult> ObterDadosServicoExterno()
         {
-            var retorno = await _passagemService.ObterDadosServicoExterno();
+            var retorno = await _listagemCarrosService.ObterDadosServicoExterno();
 
             if (retorno == ProcessamentoBaseExterna.ErroAoProcessar)
                 return BadRequest(retorno.GetDescription());
