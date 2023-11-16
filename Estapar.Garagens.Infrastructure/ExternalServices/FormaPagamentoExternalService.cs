@@ -7,16 +7,16 @@ using System.Text.Json;
 
 namespace Estapar.Garagens.Infrastructure.ExternalServices
 {
-    public class FormaPagamentoService : IFormaPagamentoService
+    public class FormaPagamentoExternalService : IFormaPagamentoExternalService
     {
         private readonly ExternalServiceConfig _externalServiceConfig;
 
-        public FormaPagamentoService(IOptions<ExternalServiceConfig> options)
+        public FormaPagamentoExternalService(IOptions<ExternalServiceConfig> options)
         {
             _externalServiceConfig = options.Value;
         }
 
-        public async Task<List<FormaPagamentoDto>> GetData()
+        public async Task<List<FormaPagamentoFileDto>> GetData()
         {
             try
             {

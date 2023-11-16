@@ -2,8 +2,8 @@
 
 namespace Estapar.Garagens.Infrastructure.ExternalServices.Interfaces
 {
-    public interface IGaragemService
+    public interface IGaragemExternalService
     {
-        Task<List<GaragemDto>> GetData();
+        Task<List<GaragemFileDto>> GetData();
     }
 }

@@ -6,55 +6,47 @@ namespace Estapar.Garagens.Infrastructure.Repositories
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private readonly DbContextOptions<ApplicationDbContext> _dbContext;
+        protected readonly DbContext _dbContext;
 
-        public RepositoryBase()
+        public RepositoryBase(DbContext dbContext)
         {
-            _dbContext = new DbContextOptions<ApplicationDbContext>();
+            _dbContext = dbContext;
         }
 
         public async Task<T> Add(T objeto)
         {
-            using (var data = new ApplicationDbContext(_dbContext))
-            {
-                await data.Set<T>().AddAsync(objeto);
-                await data.SaveChangesAsync();
-            }
+            await _dbContext.Set<T>().AddAsync(objeto);
+            await _dbContext.SaveChangesAsync();
+
             return objeto;
+        }
+
+        public async Task AddRange(List<T> objeto)
+        {
+            await _dbContext.Set<T>().AddRangeAsync(objeto);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task Delete(T objeto)
         {
-            using (var data = new ApplicationDbContext(_dbContext))
-            {
-                data.Set<T>().Remove(objeto);
-                await data.SaveChangesAsync();
-            }
+            _dbContext.Set<T>().Remove(objeto);
+            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<T>> GetAll(T objeto)
         {
-            using (var data = new ApplicationDbContext(_dbContext))
-            {
-                return await data.Set<T>().AsNoTracking().ToListAsync();
-            }
+            return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
         public async Task<T> GetById(int id)
         {
-            using (var data = new ApplicationDbContext(_dbContext))
-            {
-                return await data.Set<T>().FindAsync(id);
-            }
+            return await _dbContext.Set<T>().FindAsync(id);
         }
 
         public async Task<T> Update(T objeto)
         {
-            using (var data = new ApplicationDbContext(_dbContext))
-            {
-                data.Set<T>().Update(objeto);
-                await data.SaveChangesAsync();
-            }
+            _dbContext.Set<T>().Update(objeto);
+            await _dbContext.SaveChangesAsync();
 
             return objeto;
         }

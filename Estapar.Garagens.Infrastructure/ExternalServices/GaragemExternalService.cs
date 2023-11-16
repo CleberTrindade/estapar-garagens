@@ -7,32 +7,32 @@ using System.Text.Json;
 
 namespace Estapar.Garagens.Infrastructure.ExternalServices
 {
-    public class PassagemService : IPassagemService
+    public class GaragemExternalService : IGaragemExternalService
     {
         private readonly ExternalServiceConfig _externalServiceConfig;
 
-        public PassagemService(IOptions<ExternalServiceConfig> options)
+        public GaragemExternalService(IOptions<ExternalServiceConfig> options)
         {
             _externalServiceConfig = options.Value;
         }
 
-        public async Task<List<PassagemDto>> GetData()
+        public async Task<List<GaragemFileDto>> GetData()
         {
             try
             {
                 var baseDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-                var formasPagamentoPath = Path.Combine(baseDirectory, _externalServiceConfig.PassagensPath);
+                var formasPagamentoPath = Path.Combine(baseDirectory, _externalServiceConfig.GaragensPath);
 
                 if (File.Exists(formasPagamentoPath))
                 {
                     string json = File.ReadAllText(formasPagamentoPath);
 
-                    return JsonSerializer.Deserialize<ConfiguiracaoPassagemDto>(json).Passagens;
+                    return JsonSerializer.Deserialize<ConfiguiracaoGaragemDto>(json).Garagens;
                 }
                 else
                 {
-                    Console.WriteLine($"O arquivo {_externalServiceConfig.PassagensPath} não existe.");
+                    Console.WriteLine($"O arquivo {_externalServiceConfig.GaragensPath} não existe.");
                     return null;
                 }
 

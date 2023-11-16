@@ -3,6 +3,7 @@
     public interface IRepositoryBase<T> where T : class
     {
         Task<T> Add(T objeto);
+        Task AddRange(List<T> objeto);
         Task<T> Update(T objeto);
         Task Delete(T objeto);
         Task<T> GetById(int id);

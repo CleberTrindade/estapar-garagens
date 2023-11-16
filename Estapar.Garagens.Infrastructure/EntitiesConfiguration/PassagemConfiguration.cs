@@ -15,9 +15,9 @@ namespace Estapar.Garagens.Infrastructure.EntitiesConfiguration
             builder.Property(p => p.CarroMarca).HasMaxLength(20).IsRequired();
             builder.Property(p => p.CarroModelo).HasMaxLength(20).IsRequired();
             builder.Property(p => p.DataHoraEntrada).IsRequired();
-            builder.Property(p => p.DataHoraSaida);
-            builder.Property(p => p.FormaPagamento).HasMaxLength(5);
-            builder.Property(p => p.PrecoTotal).HasPrecision(10,2);
+            builder.Property(p => p.DataHoraSaida).IsRequired(false);
+            builder.Property(p => p.FormaPagamento).HasMaxLength(5).IsRequired(false); ;
+            builder.Property(p => p.PrecoTotal).HasPrecision(10,2).IsRequired(false); ;
 
         }
     }

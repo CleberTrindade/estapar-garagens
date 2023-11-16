@@ -1,6 +1,6 @@
 ﻿namespace Estapar.Garagens.Infrastructure.Models
 {
-    public class GaragemDto
+    public class GaragemFileDto
     {
         public string Codigo { get; set; }
         public string Nome { get; set; }
@@ -11,6 +11,6 @@
 
     public class ConfiguiracaoGaragemDto
     {
-        public List<GaragemDto> Garagens { get; set; }
+        public List<GaragemFileDto> Garagens { get; set; }
     }
 }

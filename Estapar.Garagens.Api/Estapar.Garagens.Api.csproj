@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Controllers\BaseController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
@@ -15,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Estapar.Garagens.Infrastructure\Estapar.Garagens.Infrastructure.csproj" />
+    <ProjectReference Include="..\Estapar.Garagens.IoC\Estapar.Garagens.IoC.csproj" />
   </ItemGroup>
 
   <ItemGroup>

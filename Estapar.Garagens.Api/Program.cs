@@ -1,5 +1,5 @@
 using Estapar.Garagens.Infrastructure.Config;
-using Estapar.Garagens.Infrastructure.IoC;
+using Estapar.Garagens.IoC;
 
 var builder = WebApplication.CreateBuilder(args);
 
