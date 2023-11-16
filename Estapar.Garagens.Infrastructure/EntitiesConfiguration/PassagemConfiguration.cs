@@ -18,6 +18,7 @@ namespace Estapar.Garagens.Infrastructure.EntitiesConfiguration
             builder.Property(p => p.DataHoraSaida);
             builder.Property(p => p.FormaPagamento).HasMaxLength(5);
             builder.Property(p => p.PrecoTotal).HasPrecision(10,2);
+
         }
     }
 }
