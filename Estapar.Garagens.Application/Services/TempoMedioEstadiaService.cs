@@ -16,11 +16,16 @@ namespace Estapar.Garagens.Application.Services
 
         public async Task<TempoMedioDto> ObterTempoMedioEstadiaMensalista(DateTime periodoInicio, DateTime periodoFinal)
         {
-            var fechamento = await _passagemRepository.ObterCarrosPorPeriodoMensalista(periodoInicio, periodoFinal);
+            var carros = await _passagemRepository.ObterCarrosPorPeriodoMensalista(periodoInicio, periodoFinal);
 
-            var dados = fechamento.Select(p => ((TimeSpan)(p.DataHoraSaida - p.DataHoraEntrada)).TotalHours).Sum();
+            if (carros.Count() > 0)
+            {
+                var dados = carros.Select(p => ((TimeSpan)(p.DataHoraSaida - p.DataHoraEntrada)).TotalHours).Sum();
 
-            return new TempoMedioDto() { TempoMedio = (dados / fechamento.ToList().Count), Mensalista = true };
+                return new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = true };
+            }
+
+            return new TempoMedioDto() { };
         }
 
         public async Task<TempoMedioDto> ObterTempoMedioEstadiaNaoMensalista(DateTime periodoInicio, DateTime periodoFinal)
@@ -31,14 +36,10 @@ namespace Estapar.Garagens.Application.Services
             {
                 var dados = carros.Select(p => ((TimeSpan)(p.DataHoraSaida - p.DataHoraEntrada)).TotalHours).Sum();
 
-                var md = (dados / carros.ToList().Count);
-
-                var tt = new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = true };
-
-                return new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = true };
+                return new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = false };
             }
 
-            return new TempoMedioDto(){ };
+            return new TempoMedioDto() { };
         }
     }
 }

@@ -33,7 +33,7 @@ namespace Estapar.Garagens.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<T>> GetAll(T objeto)
+        public async Task<IEnumerable<T>> GetAll()
         {
             return await _dbContext.Set<T>().AsNoTracking().ToListAsync();
         }

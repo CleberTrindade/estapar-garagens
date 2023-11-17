@@ -2,7 +2,7 @@
 
 namespace Estapar.Garagens.Application.Enums
 {
-    public enum FormaPagamento
+    public enum ProcessamentoBaseExternaEnum
     {
         [Description("Base de dados não Localizada")]
         NaoLocalizada = 0,

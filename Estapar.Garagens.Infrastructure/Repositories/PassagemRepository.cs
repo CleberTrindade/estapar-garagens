@@ -40,7 +40,16 @@ namespace Estapar.Garagens.Infrastructure.Repositories
                                                        p.FormaPagamento != "MEN").ToListAsync();
         }
 
-        
+        public async Task<IEnumerable<(Passagem, Garagem)>> ObterDadosPassagem()
+        {
+            var resultado = await (from passagem in _context.Passagens
+                                   join garagem in _context.Garagens on passagem.Garagem equals garagem.Codigo                                   
+                                   select new { Passagem = passagem, Garagem = garagem }
+                                  ).ToListAsync();
+
+            return resultado.Select(x => (x.Passagem, x.Garagem));
+        }
+
         public async Task<IEnumerable<Passagem>> ObterHistoricoEstadia()
         {
             return await _context.Passagens.Where(p => p.DataHoraSaida != null).ToListAsync();

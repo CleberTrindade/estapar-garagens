@@ -1,9 +1,6 @@
-﻿using AutoMapper;
-using Estapar.Garagens.Application.DTOs.Fechamento;
+﻿using Estapar.Garagens.Application.DTOs.Fechamento;
 using Estapar.Garagens.Application.Interfaces;
 using Estapar.Garagens.Domain.Interfaces.Repositories;
-using Estapar.Garagens.Infrastructure.Models;
-using System.Text.Json;
 
 namespace Estapar.Garagens.Application.Services
 {
@@ -19,6 +16,8 @@ namespace Estapar.Garagens.Application.Services
         public async Task<IEnumerable<FechamentoDto>> ObterFechamentoPorPeriodo(DateTime periodoInicio, DateTime periodoFinal)
         {
             var fechamento = await _passagemRepository.ObterCarrosPorPeriodo(periodoInicio, periodoFinal);
+
+            var tt = await _passagemRepository.ObterDadosPassagem();
 
             var dados = fechamento.GroupBy(p => p.FormaPagamento)
             .Select(g => new FechamentoDto()

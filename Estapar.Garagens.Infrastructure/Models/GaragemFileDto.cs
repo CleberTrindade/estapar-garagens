@@ -7,7 +7,14 @@
         public string Preco_1aHora { get; set; }
         public string Preco_HorasExtra { get; set; }
         public string Preco_Mensalista { get; set; }
+
+        public object Preco_Hora(string preco)
+        {
+            return preco.Equals("") ? null : Convert.ToDecimal(preco);
+        }
     }
+
+    
 
     public class ConfiguiracaoGaragemDto
     {

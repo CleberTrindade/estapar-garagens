@@ -18,8 +18,8 @@ namespace Estapar.Garagens.Api.Controllers
 
         
 
-        [HttpGet("ObterFechamentoPorPeriodo")]
-        public async Task<IActionResult> ObterFechamentoPorPeriodo(string dataInicio, string dataFim)
+        [HttpGet("ListarCarrosPorPeriodo")]
+        public async Task<IActionResult> ListarCarrosPorPeriodo(string dataInicio, string dataFim)
         {
             var dtInicio = DateTime.Parse(dataInicio);
             var dtFim = DateTime.Parse(dataFim);
@@ -36,8 +36,8 @@ namespace Estapar.Garagens.Api.Controllers
             return Ok(retorno);
         }
 
-        [HttpGet("ObterCarrosEmGaragem")]
-        public async Task<IActionResult> ObterCarrosEmGaragem()
+        [HttpGet("ListarCarrosEmGaragem")]
+        public async Task<IActionResult> ListarCarrosEmGaragem()
         {
             var retorno = await _listagemCarrosService.ObterCarrosEmGaragem();
 
@@ -50,17 +50,6 @@ namespace Estapar.Garagens.Api.Controllers
             var retorno = await _listagemCarrosService.ObterHistoricoEstadia();
 
             return Ok(retorno);
-        }
-
-        [HttpGet("ObterDadosServicoExterno")]
-        public async Task<IActionResult> ObterDadosServicoExterno()
-        {
-            var retorno = await _listagemCarrosService.ObterDadosServicoExterno();
-
-            if (retorno == ProcessamentoBaseExterna.ErroAoProcessar)
-                return BadRequest(retorno.GetDescription());
-
-            return Ok(retorno.GetDescription());
         }
     }
 }

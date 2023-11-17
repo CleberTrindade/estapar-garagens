@@ -7,6 +7,6 @@
         Task<T> Update(T objeto);
         Task Delete(T objeto);
         Task<T> GetById(int id);
-        Task<IEnumerable<T>> GetAll(T objeto);
+        Task<IEnumerable<T>> GetAll();
     }
 }

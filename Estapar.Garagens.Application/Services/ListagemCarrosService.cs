@@ -6,7 +6,6 @@ using Estapar.Garagens.Domain.Entities;
 using Estapar.Garagens.Domain.Interfaces.Repositories;
 using Estapar.Garagens.Infrastructure.ExternalServices.Interfaces;
 using Estapar.Garagens.Infrastructure.Models;
-using System.Globalization;
 
 namespace Estapar.Garagens.Application.Services
 {
@@ -45,7 +44,7 @@ namespace Estapar.Garagens.Application.Services
             return _mapper.Map<IEnumerable<CarroGaragemDto>>(carros);
         }
 
-        public async Task<ProcessamentoBaseExterna> ObterDadosServicoExterno()
+        public async Task<ProcessamentoBaseExternaEnum> ObterDadosServicoExterno()
         {
             var result = await _passagemExternalService.GetData();
 
@@ -56,10 +55,10 @@ namespace Estapar.Garagens.Application.Services
             if (reg.Count() == 0 || reg.Count() < dados.Count())
             {
                 await _passagemRepository.AddRange(dados);
-                return ProcessamentoBaseExterna.ProcessadaComSucesso;
+                return ProcessamentoBaseExternaEnum.ProcessadaComSucesso;
             }
             else
-                return reg.Count() == 0 ? ProcessamentoBaseExterna.NaoLocalizada : ProcessamentoBaseExterna.JaProcessada;
+                return reg.Count() == 0 ? ProcessamentoBaseExternaEnum.NaoLocalizada : ProcessamentoBaseExternaEnum.JaProcessada;
         }
     }
 }

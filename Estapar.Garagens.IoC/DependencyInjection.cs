@@ -38,6 +38,7 @@ namespace Estapar.Garagens.IoC
             services.AddScoped<IListagemCarrosService, ListagemCarrosService>();
             services.AddScoped<IFechamentoService, FechamentoService>();
             services.AddScoped<ITempoMedioEstadiaService, TempoMedioEstadiaService>();
+            services.AddScoped<ITratamentoBaseExterna, TratamentoBaseExterna>();
             services.AddAutoMapper(typeof(DomainToDtoProfile));
         }
     }

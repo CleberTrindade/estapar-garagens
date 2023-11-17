@@ -29,6 +29,8 @@ namespace Estapar.Garagens.Api.Controllers
             if (dtInicio >= dtFim)
                 return BadRequest("A data de início não deve ser maior ou igual que a data de fim.");
 
+            
+
             var retorno = await _fechamentoService.ObterFechamentoPorPeriodo(dtInicio, dtFim);
 
             return Ok(retorno);
