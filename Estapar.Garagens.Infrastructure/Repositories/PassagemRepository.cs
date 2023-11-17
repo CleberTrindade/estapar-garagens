@@ -26,6 +26,21 @@ namespace Estapar.Garagens.Infrastructure.Repositories
                                                    p.DataHoraSaida <= PeriodoFinal).ToListAsync();
         }
 
+        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoMensalista(DateTime PeriodoInicio, DateTime PeriodoFinal)
+        {
+            return await _context.Passagens.Where(p => p.DataHoraEntrada >= PeriodoInicio &&
+                                                       p.DataHoraSaida <= PeriodoFinal &&
+                                                       p.FormaPagamento == "MEN").ToListAsync();
+        }
+
+        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoNaoMensalista(DateTime PeriodoInicio, DateTime PeriodoFinal)
+        {
+            return await _context.Passagens.Where(p => p.DataHoraEntrada >= PeriodoInicio &&
+                                                       p.DataHoraSaida <= PeriodoFinal &&
+                                                       p.FormaPagamento != "MEN").ToListAsync();
+        }
+
+        
         public async Task<IEnumerable<Passagem>> ObterHistoricoEstadia()
         {
             return await _context.Passagens.Where(p => p.DataHoraSaida != null).ToListAsync();
