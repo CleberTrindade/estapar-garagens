@@ -20,11 +20,10 @@ namespace Estapar.Garagens.Application.Services
 
             if (carros.Count() > 0)
             {
-                var dados = carros.Select(p => ((TimeSpan)(p.DataHoraSaida - p.DataHoraEntrada)).TotalHours).Sum();
+                TimeSpan somaTotalHoras = TimeSpan.FromTicks(carros.Sum(item => item.ObterTotalHoras().Ticks));
 
-                return new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = true };
+                return new TempoMedioDto() { TempoMedio = (somaTotalHoras / carros.ToList().Count), Mensalista = true };
             }
-
             return new TempoMedioDto() { };
         }
 
@@ -34,11 +33,10 @@ namespace Estapar.Garagens.Application.Services
 
             if (carros.Count() > 0)
             {
-                var dados = carros.Select(p => ((TimeSpan)(p.DataHoraSaida - p.DataHoraEntrada)).TotalHours).Sum();
+                TimeSpan somaTotalHoras = TimeSpan.FromTicks(carros.Sum(item => item.ObterTotalHoras().Ticks));
 
-                return new TempoMedioDto() { TempoMedio = (dados / carros.ToList().Count), Mensalista = false };
+                return new TempoMedioDto() { TempoMedio = (somaTotalHoras / carros.ToList().Count), Mensalista = false };
             }
-
             return new TempoMedioDto() { };
         }
     }

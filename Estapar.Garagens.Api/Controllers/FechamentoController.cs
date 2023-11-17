@@ -1,13 +1,12 @@
+using Estapar.Garagens.Api.Config;
 using Estapar.Garagens.Application.Interfaces;
-using Estapar.Garagens.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Estapar.Garagens.Api.Controllers
 {
     [ApiController]
     [Route("api/fechamento")]
-    public class FechamentoController : ControllerBase
+    public class FechamentoController : BaseController
     {
         private readonly IFechamentoService _fechamentoService;
 
@@ -23,17 +22,20 @@ namespace Estapar.Garagens.Api.Controllers
             var dtFim = DateTime.Parse(dataFim);
 
             if (dtInicio == DateTime.MinValue || dtFim == DateTime.MinValue)
-                return BadRequest("Por favor, informar um periodo válido.");
-
+            {
+                AddError("Por favor, informar um periodo válido.");
+                return CustomResponse();
+            }
 
             if (dtInicio >= dtFim)
-                return BadRequest("A data de início não deve ser maior ou igual que a data de fim.");
-
-            
+            {
+                AddError("A data de início não deve ser maior ou igual que a data de fim.");
+                return CustomResponse();
+            }
 
             var retorno = await _fechamentoService.ObterFechamentoPorPeriodo(dtInicio, dtFim);
 
-            return Ok(retorno);
+            return CustomResponse(retorno);
         }
     }
 }

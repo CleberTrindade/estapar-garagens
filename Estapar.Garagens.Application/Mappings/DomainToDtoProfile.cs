@@ -35,8 +35,7 @@ namespace Estapar.Garagens.Application.Mappings
             .ForMember(dest => dest.DataHoraEntrada, opt => opt.MapFrom(src => DateTime.Parse(src.DataHoraEntrada)))
             .ForMember(dest => dest.DataHoraSaida, opt => opt.MapFrom(src => src.ValidarDataHoraSaida()))
             .ForMember(dest => dest.FormaPagamento, opt => opt.MapFrom(src => src.FormaPagamento))
-            .ForMember(dest => dest.PrecoTotal, opt => opt.MapFrom(src => src.ValidarPrecoTotal()))
-            ;
+            .ForMember(dest => dest.PrecoTotal, opt => opt.MapFrom(src => src.ValidarPrecoTotal()));
         }
     }
 }

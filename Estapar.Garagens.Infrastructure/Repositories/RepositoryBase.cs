@@ -50,5 +50,12 @@ namespace Estapar.Garagens.Infrastructure.Repositories
 
             return objeto;
         }
+
+        public async Task UpdateRange(List<T> objeto)
+        {
+            _dbContext.Set<T>().UpdateRange(objeto);
+            await _dbContext.SaveChangesAsync();
+
+        }
     }
 }

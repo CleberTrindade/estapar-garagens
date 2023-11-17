@@ -8,6 +8,5 @@ namespace Estapar.Garagens.Application.Interfaces
         Task<IEnumerable<CarroGaragemDto>> ObterCarrosPorPeriodo(DateTime periodoInicio, DateTime periodoFinal);
         Task<IEnumerable<CarroGaragemDto>> ObterCarrosEmGaragem();
         Task<IEnumerable<CarroGaragemDto>> ObterHistoricoEstadia();
-        Task<ProcessamentoBaseExternaEnum> ObterDadosServicoExterno();
     }
 }

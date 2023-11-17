@@ -2,7 +2,7 @@
 {
     public class TempoMedioDto
     {
-        public double TempoMedio { get; set; }
+        public TimeSpan TempoMedio { get; set; }
         public bool Mensalista { get; set; }
     }
 }

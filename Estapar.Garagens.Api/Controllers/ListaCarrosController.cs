@@ -1,5 +1,4 @@
-using Estapar.Garagens.Application.Enums;
-using Estapar.Garagens.Application.Extensions;
+using Estapar.Garagens.Api.Config;
 using Estapar.Garagens.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,7 +6,7 @@ namespace Estapar.Garagens.Api.Controllers
 {
     [ApiController]
     [Route("api/listagem-carros")]
-    public class ListaCarrosController : ControllerBase
+    public class ListaCarrosController : BaseController
     {
         private readonly IListagemCarrosService _listagemCarrosService;
 
@@ -25,15 +24,20 @@ namespace Estapar.Garagens.Api.Controllers
             var dtFim = DateTime.Parse(dataFim);
 
             if (dtInicio == DateTime.MinValue || dtFim == DateTime.MinValue)
-                return BadRequest("Por favor, informar um periodo válido.");
-
+            {
+                AddError("Por favor, informar um periodo válido.");
+                return CustomResponse();
+            }
 
             if (dtInicio >= dtFim)
-                return BadRequest("A data de início não deve ser maior ou igual que a data de fim.");
+            {
+                AddError("A data de início não deve ser maior ou igual que a data de fim.");
+                return CustomResponse();
+            }
 
             var retorno = await _listagemCarrosService.ObterCarrosPorPeriodo(dtInicio, dtFim);
 
-            return Ok(retorno);
+            return CustomResponse(retorno);
         }
 
         [HttpGet("ListarCarrosEmGaragem")]
@@ -41,7 +45,7 @@ namespace Estapar.Garagens.Api.Controllers
         {
             var retorno = await _listagemCarrosService.ObterCarrosEmGaragem();
 
-            return Ok(retorno);
+            return CustomResponse(retorno);
         }
 
         [HttpGet("ObterHistoricoEstadia")]
@@ -49,7 +53,7 @@ namespace Estapar.Garagens.Api.Controllers
         {
             var retorno = await _listagemCarrosService.ObterHistoricoEstadia();
 
-            return Ok(retorno);
+            return CustomResponse(retorno);
         }
     }
 }

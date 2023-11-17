@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Config\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Estapar.Garagens.IoC\Estapar.Garagens.IoC.csproj" />
   </ItemGroup>
 

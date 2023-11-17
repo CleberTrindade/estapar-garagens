@@ -16,9 +16,7 @@ namespace Estapar.Garagens.Application.Services
         public async Task<IEnumerable<FechamentoDto>> ObterFechamentoPorPeriodo(DateTime periodoInicio, DateTime periodoFinal)
         {
             var fechamento = await _passagemRepository.ObterCarrosPorPeriodo(periodoInicio, periodoFinal);
-
-            var tt = await _passagemRepository.ObterDadosPassagem();
-
+                        
             var dados = fechamento.GroupBy(p => p.FormaPagamento)
             .Select(g => new FechamentoDto()
             {

@@ -43,22 +43,5 @@ namespace Estapar.Garagens.Application.Services
 
             return _mapper.Map<IEnumerable<CarroGaragemDto>>(carros);
         }
-
-        public async Task<ProcessamentoBaseExternaEnum> ObterDadosServicoExterno()
-        {
-            var result = await _passagemExternalService.GetData();
-
-            var dados = _mapper.Map<List<PassagemFileDto>, List<Passagem>>(result);
-
-            var reg = await _passagemRepository.ObterHistoricoEstadia();
-
-            if (reg.Count() == 0 || reg.Count() < dados.Count())
-            {
-                await _passagemRepository.AddRange(dados);
-                return ProcessamentoBaseExternaEnum.ProcessadaComSucesso;
-            }
-            else
-                return reg.Count() == 0 ? ProcessamentoBaseExternaEnum.NaoLocalizada : ProcessamentoBaseExternaEnum.JaProcessada;
-        }
     }
 }

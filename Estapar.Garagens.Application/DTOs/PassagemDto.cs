@@ -1,4 +1,6 @@
-﻿namespace Estapar.Garagens.Application.DTOs
+﻿using Estapar.Garagens.Domain.Entities;
+
+namespace Estapar.Garagens.Application.DTOs
 {
     public class PassagemDto
     {
@@ -11,5 +13,7 @@
         public DateTime DataHoraSaida { get; set; }
         public string FormaPagamento { get; set; }
         public decimal PrecoTotal { get; set; }
+
+        
     }
 }

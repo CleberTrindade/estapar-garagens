@@ -8,5 +8,7 @@
         public string CarroModelo { get; set; }
         public DateTime DataHoraEntrada { get; set; }
         public DateTime DataHoraSaida { get; set; }
+        public string FormaPagamento { get; set; }
+        public decimal PrecoTotal { get; set; }
     }
 }
