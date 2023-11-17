@@ -15,11 +15,20 @@ namespace Estapar.Garagens.Api.Controllers
             _listagemCarrosService = listagemCarrosService;
         }
 
-        
+
 
         [HttpGet("ListarCarrosPorPeriodo")]
-        public async Task<IActionResult> ListarCarrosPorPeriodo(string dataInicio, string dataFim)
+        public async Task<IActionResult> ListarCarrosPorPeriodo(string codigoGaragem, string dataInicio, string dataFim)
         {
+            DateTime dtInicioOut;
+            DateTime dtFimOut;
+
+            if (!DateTime.TryParse(dataInicio, out dtInicioOut) || !DateTime.TryParse(dataFim, out dtFimOut))
+            {
+                AddError("Por favor, informar datas válidas.");
+                return CustomResponse();
+            }
+
             var dtInicio = DateTime.Parse(dataInicio);
             var dtFim = DateTime.Parse(dataFim);
 
@@ -35,23 +44,23 @@ namespace Estapar.Garagens.Api.Controllers
                 return CustomResponse();
             }
 
-            var retorno = await _listagemCarrosService.ObterCarrosPorPeriodo(dtInicio, dtFim);
+            var retorno = await _listagemCarrosService.ObterCarrosPorPeriodo(codigoGaragem, dtInicio, dtFim);
 
             return CustomResponse(retorno);
         }
 
         [HttpGet("ListarCarrosEmGaragem")]
-        public async Task<IActionResult> ListarCarrosEmGaragem()
+        public async Task<IActionResult> ListarCarrosEmGaragem(string codigoGaragem)
         {
-            var retorno = await _listagemCarrosService.ObterCarrosEmGaragem();
+            var retorno = await _listagemCarrosService.ObterCarrosEmGaragem(codigoGaragem);
 
             return CustomResponse(retorno);
         }
 
         [HttpGet("ObterHistoricoEstadia")]
-        public async Task<IActionResult> ObterHistoricoEstadia()
+        public async Task<IActionResult> ObterHistoricoEstadia(string codigoGaragem)
         {
-            var retorno = await _listagemCarrosService.ObterHistoricoEstadia();
+            var retorno = await _listagemCarrosService.ObterHistoricoEstadia(codigoGaragem);
 
             return CustomResponse(retorno);
         }

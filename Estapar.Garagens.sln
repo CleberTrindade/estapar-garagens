@@ -9,9 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estapar.Garagens.Domain", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estapar.Garagens.Infrastructure", "Estapar.Garagens.Infrastructure\Estapar.Garagens.Infrastructure.csproj", "{574CFF74-1C65-4BAC-8460-A1315C8D77CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estapar.Garagens.Application", "Estapar.Garagens.Application\Estapar.Garagens.Application.csproj", "{E97C21CD-4524-416C-BF3D-AF42F3879263}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estapar.Garagens.Application", "Estapar.Garagens.Application\Estapar.Garagens.Application.csproj", "{E97C21CD-4524-416C-BF3D-AF42F3879263}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Estapar.Garagens.IoC", "Estapar.Garagens.IoC\Estapar.Garagens.IoC.csproj", "{FD3D7237-5A88-4AF8-AEED-6C96D756EEBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Estapar.Garagens.IoC", "Estapar.Garagens.IoC\Estapar.Garagens.IoC.csproj", "{FD3D7237-5A88-4AF8-AEED-6C96D756EEBD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Estapar.Garagens.postman_collection", "Estapar.Garagens.postman_collection", "{8C6A5B3E-DE57-49B8-9E69-BFC7DF2E7EDB}"
+	ProjectSection(SolutionItems) = preProject
+		..\Garagem.postman_collection.json = ..\Garagem.postman_collection.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

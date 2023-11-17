@@ -97,7 +97,7 @@ namespace Estapar.Garagens.Application.Services
 
             var dados = ObterJuncaoDados(dadosPassagem, dadosGaragem).ToList();
 
-            var reg = await _passagemRepository.ObterHistoricoEstadia();
+            var reg = await _passagemRepository.GetAll();
 
             if (reg.Count() == 0 || reg.Count() < dados.Count())
             {

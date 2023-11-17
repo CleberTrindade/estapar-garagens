@@ -14,28 +14,31 @@ namespace Estapar.Garagens.Infrastructure.Repositories
         {
             _context = context;
         }
-        public async Task<IEnumerable<Passagem>> ObterCarrosEmGaragem()
+        public async Task<IEnumerable<Passagem>> ObterCarrosEmGaragem(string codigoGaragem)
         {
-            return await _context.Passagens.Where(p => p.DataHoraSaida == null).ToListAsync();
+            return await _context.Passagens.Where(p => p.Garagem == codigoGaragem && p.DataHoraSaida == null).ToListAsync();
 
         }
 
-        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodo(DateTime PeriodoInicio, DateTime PeriodoFinal)
+        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodo(string codigoGaragem, DateTime PeriodoInicio, DateTime PeriodoFinal)
         {
-            return await _context.Passagens.Where(p => p.DataHoraEntrada >= PeriodoInicio &&
-                                                   p.DataHoraSaida <= PeriodoFinal).ToListAsync();
+            return await _context.Passagens.Where(p => p.Garagem == codigoGaragem && 
+                                                       p.DataHoraEntrada >= PeriodoInicio &&
+                                                       p.DataHoraSaida <= PeriodoFinal).ToListAsync();
         }
 
-        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoMensalista(DateTime PeriodoInicio, DateTime PeriodoFinal)
+        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoMensalista(string codigoGaragem, DateTime PeriodoInicio, DateTime PeriodoFinal)
         {
-            return await _context.Passagens.Where(p => p.DataHoraEntrada >= PeriodoInicio &&
+            return await _context.Passagens.Where(p => p.Garagem == codigoGaragem && 
+                                                       p.DataHoraEntrada >= PeriodoInicio &&
                                                        p.DataHoraSaida <= PeriodoFinal &&
                                                        p.FormaPagamento == "MEN").ToListAsync();
         }
 
-        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoNaoMensalista(DateTime PeriodoInicio, DateTime PeriodoFinal)
+        public async Task<IEnumerable<Passagem>> ObterCarrosPorPeriodoNaoMensalista(string codigoGaragem, DateTime PeriodoInicio, DateTime PeriodoFinal)
         {
-            return await _context.Passagens.Where(p => p.DataHoraEntrada >= PeriodoInicio &&
+            return await _context.Passagens.Where(p => p.Garagem == codigoGaragem &&
+                                                       p.DataHoraEntrada >= PeriodoInicio &&
                                                        p.DataHoraSaida <= PeriodoFinal &&
                                                        p.FormaPagamento != "MEN").ToListAsync();
         }
@@ -50,9 +53,9 @@ namespace Estapar.Garagens.Infrastructure.Repositories
             return resultado.Select(x => (x.Passagem, x.Garagem));
         }
 
-        public async Task<IEnumerable<Passagem>> ObterHistoricoEstadia()
+        public async Task<IEnumerable<Passagem>> ObterHistoricoEstadia(string codigoGaragem)
         {
-            return await _context.Passagens.Where(p => p.DataHoraSaida != null).ToListAsync();
+            return await _context.Passagens.Where(p => p.Garagem == codigoGaragem && p.DataHoraSaida != null).ToListAsync();
         }
     }
 }

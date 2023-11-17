@@ -17,8 +17,17 @@ namespace Estapar.Garagens.Api.Controllers
 
         //Calcular tempo médio de estadia de mensalistas
         [HttpGet("CalcularTempoMedioEstadias")]
-        public async Task<IActionResult> CalcularTempoMedioEstadias(string dataInicio, string dataFim, bool mensalista)
+        public async Task<IActionResult> CalcularTempoMedioEstadias(string codigoGaragem, string dataInicio, string dataFim, bool mensalista)
         {
+            DateTime dtInicioOut;
+            DateTime dtFimOut;
+
+            if (!DateTime.TryParse(dataInicio, out dtInicioOut) || !DateTime.TryParse(dataFim, out dtFimOut))
+            {
+                AddError("Por favor, informar datas válidas.");
+                return CustomResponse();
+            }
+
             var dtInicio = DateTime.Parse(dataInicio);
             var dtFim = DateTime.Parse(dataFim);
 
@@ -34,8 +43,8 @@ namespace Estapar.Garagens.Api.Controllers
                 return CustomResponse();
             }
 
-            var retorno = mensalista ? await _tempoMedioEstadiaService.ObterTempoMedioEstadiaMensalista(dtInicio, dtFim)
-                                     : await _tempoMedioEstadiaService.ObterTempoMedioEstadiaNaoMensalista(dtInicio, dtFim);
+            var retorno = mensalista ? await _tempoMedioEstadiaService.ObterTempoMedioEstadiaMensalista(codigoGaragem, dtInicio, dtFim)
+                                     : await _tempoMedioEstadiaService.ObterTempoMedioEstadiaNaoMensalista(codigoGaragem, dtInicio, dtFim);
             return CustomResponse(retorno);
         }
 

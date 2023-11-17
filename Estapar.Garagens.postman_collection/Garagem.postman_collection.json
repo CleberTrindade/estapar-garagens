@@ -1,0 +1,373 @@
+{
+	"info": {
+		"_postman_id": "6810ff16-b683-493c-93ca-67c83b8fdbe2",
+		"name": "Garagem",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4507386"
+	},
+	"item": [
+		{
+			"name": "Fechamento",
+			"item": [
+				{
+					"name": "ObterDadosPagamento",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/fechamento/ObterDadosPagamento?codigoGaragem=EVO01&dataInicio=04/09/2023&dataFim=10/09/2023",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"fechamento",
+								"ObterDadosPagamento"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "04/09/2023"
+								},
+								{
+									"key": "dataFim",
+									"value": "10/09/2023"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lista Dados Pagamento com Datas invalidas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/fechamento/ObterDadosPagamento?codigoGaragem=EVO01&dataInicio=jfhghd&dataFim=hjgjhfhgf",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"fechamento",
+								"ObterDadosPagamento"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "jfhghd"
+								},
+								{
+									"key": "dataFim",
+									"value": "hjgjhfhgf"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tempo Medio",
+			"item": [
+				{
+					"name": "CalcularTempoMedioEstadias",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/TempoMedio/CalcularTempoMedioEstadias?codigoGaragem=EVO01&dataInicio=01%2F09%2F2023%2000%3A30%3A00&dataFim=10%2F09%2F2023%2023%3A30%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"TempoMedio",
+								"CalcularTempoMedioEstadias"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "01%2F09%2F2023%2000%3A30%3A00"
+								},
+								{
+									"key": "dataFim",
+									"value": "10%2F09%2F2023%2023%3A30%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Tempo Medio Estadias Mensalista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/TempoMedio/CalcularTempoMedioEstadias?codigoGaragem=EVO01&dataInicio=01%2F09%2F2023%2000%3A00%3A00&dataFim=10%2F09%2F2023%2000%3A00%3A00&mensalista=true",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"TempoMedio",
+								"CalcularTempoMedioEstadias"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "01%2F09%2F2023%2000%3A00%3A00"
+								},
+								{
+									"key": "dataFim",
+									"value": "10%2F09%2F2023%2000%3A00%3A00"
+								},
+								{
+									"key": "mensalista",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Calcular Tempo Medio Estadias Nao Mensalista",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/TempoMedio/CalcularTempoMedioEstadias?codigoGaragem=EVO01&dataInicio=01%2F09%2F2023%2000%3A00%3A00&dataFim=10%2F09%2F2023%2000%3A00%3A00&mensalista=false",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"TempoMedio",
+								"CalcularTempoMedioEstadias"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "01%2F09%2F2023%2000%3A00%3A00"
+								},
+								{
+									"key": "dataFim",
+									"value": "10%2F09%2F2023%2000%3A00%3A00"
+								},
+								{
+									"key": "mensalista",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Processamento de Dados",
+			"item": [
+				{
+					"name": "ObterDadosServicoExterno",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/GerarBase/ObterDadosServicoExterno",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"GerarBase",
+								"ObterDadosServicoExterno"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Listagem",
+			"item": [
+				{
+					"name": "Listar Carros Por Periodo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/listagem-carros/ListarCarrosPorPeriodo?codigoGaragem=EVO01&dataInicio=01%2F09%2F2023%2000%3A00%3A00&dataFim=10%2F09%2F2023%2000%3A00%3A00",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"listagem-carros",
+								"ListarCarrosPorPeriodo"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "dataInicio",
+									"value": "01%2F09%2F2023%2000%3A00%3A00"
+								},
+								{
+									"key": "dataFim",
+									"value": "10%2F09%2F2023%2000%3A00%3A00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Carros em Garagem",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/listagem-carros/ListarCarrosEmGaragem?codigoGaragem=EVO01&",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"listagem-carros",
+								"ListarCarrosEmGaragem"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Historico Estadia",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "*/*"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7058/api/listagem-carros/ObterHistoricoEstadia?codigoGaragem=EVO01&",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7058",
+							"path": [
+								"api",
+								"listagem-carros",
+								"ObterHistoricoEstadia"
+							],
+							"query": [
+								{
+									"key": "codigoGaragem",
+									"value": "EVO01"
+								},
+								{
+									"key": "",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

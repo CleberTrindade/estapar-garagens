@@ -4,6 +4,6 @@ namespace Estapar.Garagens.Application.Interfaces
 {
     public interface IFechamentoService
     {
-        Task<IEnumerable<FechamentoDto>> ObterFechamentoPorPeriodo(DateTime periodoInicio, DateTime periodoFinal);
+        Task<IEnumerable<FechamentoDto>> ObterFechamentoPorPeriodo(string codigoGaragem, DateTime periodoInicio, DateTime periodoFinal);
     }
 }

@@ -2,6 +2,7 @@
 {
     public class TempoMedioDto
     {
+        public string CodigoGaragem { get; set; }
         public TimeSpan TempoMedio { get; set; }
         public bool Mensalista { get; set; }
     }

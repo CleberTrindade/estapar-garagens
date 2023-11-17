@@ -16,8 +16,17 @@ namespace Estapar.Garagens.Api.Controllers
         }
 
         [HttpGet("ObterDadosPagamento")]
-        public async Task<IActionResult> ObterDadosPagamento(string dataInicio, string dataFim)
+        public async Task<IActionResult> ObterDadosPagamento(string codigoGaragem, string dataInicio, string dataFim)
         {
+            DateTime dtInicioOut;
+            DateTime dtFimOut;
+
+            if (!DateTime.TryParse(dataInicio, out dtInicioOut) || !DateTime.TryParse(dataFim, out dtFimOut))
+            {
+                AddError("Por favor, informar datas válidas.");
+                return CustomResponse();
+            }
+
             var dtInicio = DateTime.Parse(dataInicio);
             var dtFim = DateTime.Parse(dataFim);
 
@@ -33,7 +42,7 @@ namespace Estapar.Garagens.Api.Controllers
                 return CustomResponse();
             }
 
-            var retorno = await _fechamentoService.ObterFechamentoPorPeriodo(dtInicio, dtFim);
+            var retorno = await _fechamentoService.ObterFechamentoPorPeriodo(codigoGaragem, dtInicio, dtFim);
 
             return CustomResponse(retorno);
         }

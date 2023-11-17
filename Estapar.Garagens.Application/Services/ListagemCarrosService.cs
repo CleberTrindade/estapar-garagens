@@ -24,22 +24,22 @@ namespace Estapar.Garagens.Application.Services
             _mapper = mapper;
             _passagemExternalService = passagemExternalService;
         }
-        public async Task<IEnumerable<CarroGaragemDto>> ObterCarrosEmGaragem()
+        public async Task<IEnumerable<CarroGaragemDto>> ObterCarrosEmGaragem(string codigoGaragem)
         {
-            var carros = await _passagemRepository.ObterCarrosEmGaragem();
+            var carros = await _passagemRepository.ObterCarrosEmGaragem(codigoGaragem);
 
             return _mapper.Map<IEnumerable<CarroGaragemDto>>(carros);
         }
 
-        public async Task<IEnumerable<CarroGaragemDto>> ObterCarrosPorPeriodo(DateTime periodoInicio, DateTime periodoFinal)
+        public async Task<IEnumerable<CarroGaragemDto>> ObterCarrosPorPeriodo(string codigoGaragem, DateTime periodoInicio, DateTime periodoFinal)
         {
-            var carros = await _passagemRepository.ObterCarrosPorPeriodo(periodoInicio, periodoFinal);
+            var carros = await _passagemRepository.ObterCarrosPorPeriodo(codigoGaragem, periodoInicio, periodoFinal);
             return _mapper.Map<IEnumerable<CarroGaragemDto>>(carros);
         }
 
-        public async Task<IEnumerable<CarroGaragemDto>> ObterHistoricoEstadia()
+        public async Task<IEnumerable<CarroGaragemDto>> ObterHistoricoEstadia(string codigoGaragem)
         {
-            var carros = await _passagemRepository.ObterHistoricoEstadia();
+            var carros = await _passagemRepository.ObterHistoricoEstadia(codigoGaragem);
 
             return _mapper.Map<IEnumerable<CarroGaragemDto>>(carros);
         }
